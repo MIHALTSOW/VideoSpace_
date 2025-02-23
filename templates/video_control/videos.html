@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Videos {% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-center mt-4">
+        <div class="text-center">
+            <div class="mb-4">
+                <p>
+                    <button type="button" class="btn btn-primary btn-lg">Загрузить видео</button>
+                </p>
+            </div>
+            <ul>
+                {% for video in videos %}
+                    <h4><a href="{% url 'video_detail' video.pk %}">{{ video.title }}</a></h4>
+                    <p>
+                        <img src="{{ video.thumbnail.url }}" alt="Видео" width="480" height="300">
+                    </p>
+                    <div class="mb-4">
+                        <div style="height: 2px; background-color: #000; width: 480px;"></div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

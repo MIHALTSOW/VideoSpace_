@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Изменение профиля {% endblock %}
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        <div class="col-5 text-center mx-auto">
+            <span class="badge" style="background-color: black; color: white;">Аватар</span><br>
+            <br>
+            <input type="file" name="avatar" value="{{ form.avatar.value }}">
+        </div>
+        <br>
+        <div class="col-1 text-center mx-auto">
+            <span class="badge" style="background-color: black; color: white;">Возраст</span><br>
+            <input type="number" name="age" class="form-control" style="width: 75px;" value="{{ form.age.value }}">
+        </div>
+        <br>
+        <div class="col-1 text-center mx-auto">
+            <span class="badge" style="background-color: black; color: white;">Пол</span><br>
+            <select name="sex" class="form-control" style="width: 110px;">
+                <option value="Man" {% if form.sex.value == 'male' %}selected{% endif %}>Мужской</option>
+                <option value="Woman" {% if form.sex.value == 'female' %}selected{% endif %}>Женский</option>
+            </select>
+        </div>
+        <br>
+        <div class="col-7 text-center mx-auto">
+            <span class="badge" style="background-color: black; color: white;">Немного о себе</span>
+            <br>
+            <textarea name="bio" rows="5" cols="40">{{ form.bio.value }}</textarea>
+        </div>
+        <br>
+        <div class="col-5 text-center mx-auto">
+            <span class="badge" style="background-color: black; color: white;">Telegram</span><br>
+            <input type="text" name="telegram" class="form-control" value="{{ form.telegram.value }}">
+        </div>
+        <br>
+        <div class="text-center">
+            <a href="{% url 'password_change' %}" class="btn btn-dark mt-2">Изменить пароль</a>
+        </div>
+        <br>
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary">Подтвердить изменения</button>
+        </div>
+        {% if form.errors %}
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    <li>{{ field }}: {{ errors }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+
+
+{% endblock %}

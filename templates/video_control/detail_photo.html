@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Detail Photos {% endblock %}
+
+{% block content %}
+    <div class="col-md-12 text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ photo.name }}</h1>
+                <p>{{ photo.description }}</p>
+                <img src="{{ photo.photo.url }}" alt="Фото">
+            </div>
+        </div>
+    </div>
+{% endblock %}

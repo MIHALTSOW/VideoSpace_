@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Photos {% endblock %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="d-flex justify-content-center mt-4">
+        <div class="text-center">
+            <div class="mb-4">
+                <p>
+                    <button type="button" class="btn btn-primary btn-lg">Загрузить фото</button>
+                </p>
+            </div>
+            <ul>
+                {% for photo in photos %}
+                    <h4><a href="{% url 'photo_detail' photo.pk %}">{{ photo.name }}</a></h4>
+                    <p>
+                        <img src="{{ photo.resized_photo.url }}" alt="Фото">
+                    </p>
+                    <div class="mb-4">
+                        <div style="height: 2px; background-color: #000; width: 480px;"></div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

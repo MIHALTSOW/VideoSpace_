@@ -1,0 +1,23 @@
+{% block content %}
+    <div style="text-align: center;">
+        <h2><span class="badge" style="background-color: black; color: white;">Login</span><br></h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <h3><label for="id_username" class="control-label">Email:</label></h3>
+                <input type="email" name="username" id="id_username" class="form-control"
+                       placeholder="Введите свой Email"
+                       style="width: 250px; height: 35px; font-size: 18px; padding: 10px;">
+            </div>
+            <br>
+            <div class="form-group">
+                <h3><label for="id_password" class="control-label">Пароль:</label></h3>
+                <input type="password" name="password" id="id_password" class="form-control"
+                       placeholder="Введите свой Пароль"
+                       style="width: 250px; height: 35px; font-size: 18px; padding: 10px;">
+            </div>
+            <br>
+            <button type="submit" style="width: 200px; height: 50px; font-size: 24px;">Войти</button>
+        </form>
+    </div>
+{% endblock %}
